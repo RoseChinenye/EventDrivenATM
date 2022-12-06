@@ -52,7 +52,7 @@ public partial class atmApp
             DateTime date = DateTime.Now;
 
             Console.WriteLine("Tinye 1 maka iwere ego\nTinye 2 maka imata ego ole inwere\nTinye 3 maka itinye ego na akantu ozo\nTinye 4 maka ipu");
-            
+
 
             var selection = Console.ReadLine();
 

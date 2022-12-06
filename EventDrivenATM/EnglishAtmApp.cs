@@ -8,9 +8,6 @@ namespace EventDrivenATM;
 
     public static void getEnglish()
     {
-        
-
-
         atmApp.getAccounts();
 
         Accounts user = new Accounts("test");
@@ -98,7 +95,7 @@ namespace EventDrivenATM;
                     {
                         if (double.TryParse(transferAmount, out double transferAmountInput))
                         {
-                            owner.Transfer(transferAmountInput, recieverAccount);
+                            owner.Transfer("");
                             Transaction(owner);
                         }
                         else
@@ -133,6 +130,8 @@ namespace EventDrivenATM;
         Transaction(user);
 
     }
+    
+
     public static void getAccounts()
     {
         Accounts First = new Accounts("Chinenye");
