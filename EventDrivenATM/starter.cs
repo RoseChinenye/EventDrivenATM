@@ -3,12 +3,8 @@ namespace EventDrivenATM;
 
 public class starter
 {
-    Accounts account = new Accounts();
-
     public void getStarter()
     {
-        account.AddTransferAlertMethod(HandleTransferAlert);
-
         Console.WriteLine(" 1. English\n 2. Igbo\n ");
         string? option = Console.ReadLine();
 

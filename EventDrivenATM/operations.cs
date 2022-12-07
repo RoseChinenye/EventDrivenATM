@@ -3,22 +3,8 @@ namespace EventDrivenATM;
     public partial class Accounts
     {
 
-    event Action<string > transferAlert;
-
-   
-
-    public void AddTransferAlertMethod(Action<string> method)
-    {
-        transferAlert += method;
-
-
-        
-    }
-
     private static int _cardNumber = 1020304050;
     private static int _pin = 1234;
-    private static double amount;
-    private static string recieverDetails;
 
     const int balanceLimit = 0;
 
@@ -41,10 +27,7 @@ namespace EventDrivenATM;
             return AccountBalance;
         }
     }
-    public Accounts()
-    {
-
-    }
+    
     public Accounts(string accountName)
     {
         AccountName = accountName;
@@ -53,22 +36,22 @@ namespace EventDrivenATM;
 
     }
 
-    public void Transfer(string message)
+    public void Transfer(double amount, string recieverDetails)
     {
            
         if (amount <= balanceLimit)
         {
-            OnTransferAlert("Cannot make a zero amount withdrawal");
+            Console.WriteLine("Cannot make a zero amount withdrawal");
         }
         else if (Balance - amount < balanceLimit)
         {
-            OnTransferAlert("Insufficient balance...");
+            Console.WriteLine("Insufficient balance...");
         }
         else
         {
             TransactionsDetails transfer = new TransactionsDetails(-amount);
             transactions.Add(transfer);
-            OnTransferAlert($"Successful: {amount} has been transfered to {recieverDetails}");
+            Console.WriteLine($"Successful: {amount} has been transfered to {recieverDetails}");
 
         }
 
@@ -78,17 +61,17 @@ namespace EventDrivenATM;
     {
         if (amount <= balanceLimit)
         {
-            OnTransferAlert("Iweghi ike inwere ego erughi otu naira. ");
+            Console.WriteLine("Iweghi ike inwere ego erughi otu naira. ");
         }
         else if (Balance - amount < balanceLimit)
         {
-            OnTransferAlert("Ego inwere ezughi!");
+            Console.WriteLine("Ego inwere ezughi!");
         }
         else
         {
             TransactionsDetails transfer = new TransactionsDetails(-amount);
             transactions.Add(transfer);
-            OnTransferAlert($"O gara nkeoma!: Ikwunyere {amount} na akantu nomba {recieverDetails}");
+            Console.WriteLine($"O gara nkeoma!: Ikwunyere {amount} na akantu nomba {recieverDetails}");
 
         }
 
@@ -143,17 +126,6 @@ namespace EventDrivenATM;
         }
 
     }
-
-    protected virtual void OnTransferAlert(string message)
-    {
-        transferAlert?.Invoke(message);
-    }
-
-    static void HandleTransferAlert(string message)
-    {
-        Console.WriteLine(message);
-    }
-
     
     }
 

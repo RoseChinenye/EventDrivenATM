@@ -95,7 +95,7 @@ namespace EventDrivenATM;
                     {
                         if (double.TryParse(transferAmount, out double transferAmountInput))
                         {
-                            owner.Transfer("");
+                            owner.Transfer(transferAmountInput, recieverAccount);
                             Transaction(owner);
                         }
                         else
