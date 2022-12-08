@@ -1,16 +1,17 @@
 ﻿
 namespace EventDrivenATM;
+
+    public delegate string Mydelegate(string message); 
     public partial class atmApp
     {
-    public delegate string Mydelegate(string message);
 
-    private static List<Accounts> ExistingAccounts = new List<Accounts>();
-
+    private static List<Operations> ExistingAccounts = new List<Operations>();
+    
     public static void getEnglish()
     {
         atmApp.getAccounts();
 
-        Accounts user = new Accounts("test");
+        Operations user = new Operations("test");
         bool _login = false;
 
 
@@ -50,10 +51,8 @@ namespace EventDrivenATM;
             Entry();
         }
 
-        void Transaction(Accounts owner)
+        void Transaction(Operations user)
         {
-
-            DateTime date = DateTime.Now;
 
             Console.WriteLine("Enter 1 to withdraw\nEnter 2 to Check balance\nEnter 3 to Transfer\nEnter 4 to Quit");
             
@@ -65,24 +64,24 @@ namespace EventDrivenATM;
             switch (userInput)
             {
                 case 1:
-                    Console.WriteLine("Please enter amount: ");
+                    Console.WriteLine("Enter amount: ");
                     var amount = Console.ReadLine();
 
                     if (double.TryParse(amount, out double amountInput))
                     {
-                        owner.Withdraw(amountInput);
-                        owner.Checkbalance();
-                        Transaction(owner);
+                        user.Withdraw(amountInput);
+                        user.Checkbalance();
+                        Transaction(user);
                     }
                     else
                     {
                         Console.WriteLine("Transaction failed!");
-                        Transaction(owner);
+                        Transaction(user);
                     }
                     break;
 
                 case 2:
-                    owner.Checkbalance(); Transaction(owner);
+                    user.Checkbalance(); Transaction(user);
                     break;
 
                 case 3:
@@ -95,12 +94,12 @@ namespace EventDrivenATM;
                     {
                         if (double.TryParse(transferAmount, out double transferAmountInput))
                         {
-                            owner.Transfer(transferAmountInput, recieverAccount);
-                            Transaction(owner);
+                            user.Transfer(transferAmountInput, recieverAccount);
+                            Transaction(user);
                         }
                         else
                         {
-                            Transaction(owner);
+                            Transaction(user);
                         }
                     }
                     else
@@ -113,7 +112,7 @@ namespace EventDrivenATM;
                     case 4:
                         Console.Clear();
                         Entry();
-                        Transaction(owner);
+                        Transaction(user);
                         _login = false;
                         break;
 
@@ -124,7 +123,7 @@ namespace EventDrivenATM;
             else
             {
                 Console.WriteLine("Your input appears to be invalid, please try a numeric value");
-                Transaction(owner);
+                Transaction(user);
             }
         }
         Transaction(user);
@@ -134,9 +133,9 @@ namespace EventDrivenATM;
 
     public static void getAccounts()
     {
-        Accounts First = new Accounts("Chinenye");
-        Accounts Second = new Accounts("Rose");
-        Accounts Third = new Accounts("Akin");
+        Operations First = new Operations("Chinenye");
+        Operations Second = new Operations("Rose");
+        Operations Third = new Operations("Akin");
 
         ExistingAccounts.Add(First);
         ExistingAccounts.Add(Second);

@@ -1,6 +1,6 @@
 ﻿
 namespace EventDrivenATM;
-    public partial class Accounts
+    public partial class Operations
     {
 
     private static int _cardNumber = 1020304050;
@@ -28,7 +28,7 @@ namespace EventDrivenATM;
         }
     }
     
-    public Accounts(string accountName)
+    public Operations(string accountName)
     {
         AccountName = accountName;
         Number = _cardNumber.ToString();
@@ -104,7 +104,7 @@ namespace EventDrivenATM;
         {
             TransactionsDetails withdrawal = new TransactionsDetails(-amount);
             transactions.Add(withdrawal);
-            Console.WriteLine($"Transaction Successful!");
+            Console.WriteLine($"Transaction Successful! {amount} has been debited from your account!");
         }
 
     }

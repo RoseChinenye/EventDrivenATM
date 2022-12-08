@@ -1,39 +1,48 @@
-﻿
-namespace EventDrivenATM;
+﻿namespace EventDrivenATM;
 
 public class starter
 {
+    public event EventHandler KeyPressOne; 
+    public event EventHandler KeyPressTwo; 
     public void getStarter()
     {
-        Console.WriteLine(" 1. English\n 2. Igbo\n ");
-        string? option = Console.ReadLine();
+        
+            Console.WriteLine("For English, Press \"1\" \nMaka I horo asusu Igbo, Pia \"2\" \n ");
+            string? option = Console.ReadLine();
 
-        if (int.TryParse(option, out int language))
-        {
-            switch (language)
+            if (int.TryParse(option, out int language))
             {
-                case 1:
-                    atmApp.getEnglish();
+                switch (language)
+                {
+                    case 1:
+                    OnKeyPressOne(EventArgs.Empty);
                     break;
-                case 2:
-                    atmApp.getIgbo();
+                    case 2:
+                    OnKeyPressTwo(EventArgs.Empty);
                     break;
-                default:
-                    Console.WriteLine("Please Enter 1 or 2");
+                    default:
+                    Console.WriteLine("Please, Press \"1\" or \"2\"\nBiko, Pia \"1\" maobu \"2\"\n");
                     getStarter();
                     break;
+                }
             }
-        }
-        else
-        {
-            Console.WriteLine("Your input is not a numerical value! Enter 1 or 2");
-            getStarter();
-        }
+            else
+            {
+                Console.WriteLine("Your input is not a numerical value! Press \"1\" or \"2\"\nAkara I pinyere abughi nomba! Pia \"1\" maobu \"2\"\n");
+                getStarter();
+            }
 
     }
+    
 
-    public static void HandleTransferAlert(string message)
+    protected virtual void OnKeyPressOne(EventArgs e)
     {
-        Console.WriteLine(message);
+        KeyPressOne?.Invoke(this, e);
     }
+
+    protected virtual void OnKeyPressTwo(EventArgs e)
+    {
+        KeyPressTwo?.Invoke(this, e);
+    }
+
 }

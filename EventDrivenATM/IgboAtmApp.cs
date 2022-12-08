@@ -6,7 +6,7 @@ public partial class atmApp
     {
         atmApp.getAccounts();
 
-        Accounts user = new Accounts("test");
+        Operations user = new Operations("test");
         bool _login = false;
 
 
@@ -46,7 +46,7 @@ public partial class atmApp
             Entry();
         }
 
-        void Transaction(Accounts owner)
+        void Transaction(Operations owner)
         {
 
             DateTime date = DateTime.Now;
@@ -104,7 +104,7 @@ public partial class atmApp
                         }
                         else
                         {
-                            Console.WriteLine("Akantu nomba itinyere ezughi oke!");
+                            Console.WriteLine("Akantu nomba itinyere ezughi ezu!");
                         }
                         break;
 

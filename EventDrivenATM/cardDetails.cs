@@ -5,11 +5,6 @@ public partial class operations
 {
     private static int _cardNumber = 1020304050;
     private static int _pin = 1234;
-    private static double amount;
-    private static string recieverDetails;
-
-    const int balanceLimit = 0;
-
 
     private List<TransactionsDetails> transactions = new List<TransactionsDetails>();
 
